@@ -1,0 +1,59 @@
+{
+  "name": "sto-escrow-box-demo-webapp",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch --config dev.webpack.config.js",
+    "start": "webpack-dev-server --config dev.webpack.config.js --open",
+    "build": "webpack --config prod.webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kumanoko24/sto-escrow-box-demo-webapp.git"
+  },
+  "author": "FST NETWORK PTE. LTD.",
+  "license": "Apache License 2.0",
+  "bugs": {
+    "url": "https://github.com/kumanoko24/sto-escrow-box-demo-webapp/issues"
+  },
+  "browserslist": [
+    "> 1%"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "homepage": "https://github.com/kumanoko24/sto-escrow-box-demo-webapp#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "csv-loader": "^3.0.2",
+    "express": "^4.17.1",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.18.2",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-dev-server": "^3.8.0",
+    "xml-loader": "^1.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,html}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "core-js": "^3.2.0",
+    "jquery": "^3.4.1",
+    "regenerator-runtime": "^0.13.3"
+  }
+}
