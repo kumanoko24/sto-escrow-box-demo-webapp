@@ -21,7 +21,7 @@ contract STOEscrowBox {
 
     mapping(bytes32 => Vote) public voteMap;
 
-    uint256 authNum;
+    uint256 public authNum;
 
     event ProposeCreated (bytes32 indexed _id);
     event ProposePassed (bytes32 indexed _id);
@@ -71,17 +71,29 @@ contract STOEscrowBox {
         return _balance;
     }
 
-    function encode (bytes32 _voteHash, address _to, bytes memory _calldata) public pure returns (bytes memory) {
+    function encodePropose (uint256 _value, address _from, uint256 _mode, bytes memory _data) public pure returns (bytes memory) {
+        return abi.encodeWithSelector(
+            bytes4(keccak256(bytes("propose(uint256,address,uint256,bytes)"))),
+            _value, _from, _mode, _data);
+    }
+
+    function decodePropose (bytes memory __data) public pure returns (uint256 _value, address _from, uint256 _mode, bytes memory _data) {
+        (_value, _from, _mode, _data) = abi.decode(__data, (uint256, address, uint256, bytes));
+    }
+
+    function encodeCallData (bytes32 _voteHash, address _to, bytes memory _calldata) public pure returns (bytes memory) {
         return abi.encode(_voteHash, _to, _calldata);
     }
 
-    function decode (bytes memory _data) public pure returns (bytes32 _voteHash, address _to, bytes memory _calldata) {
+    function decodeCallData (bytes memory _data) public pure returns (bytes32 _voteHash, address _to, bytes memory _calldata) {
         (_voteHash, _to, _calldata) = abi.decode(_data, (bytes32, address, bytes));
     }
 
     // anyone holds userCert proposes
     function mode_0 (address _ledger, uint256 _value, address _from, bytes memory _data) private returns (bool) {
-        require(getLedgerBalanceHumanNumber(userCertVoucherLedgerAddress, _from) > 0);
+        require(
+            getLedgerBalanceHumanNumber(userCertVoucherLedgerAddress, _from) > 0 ||
+            getLedgerBalanceHumanNumber(authCertVoucherLedgerAddress, _from) > 0);
 
         (bytes32 _voteHash, address _to, bytes memory _calldata) = abi.decode(_data, (bytes32, address, bytes));
 
