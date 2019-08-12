@@ -7,7 +7,8 @@ import { abi as seb_abi, bytecode as seb_bytecode } from "./stoEscrowBox";
 import {
   authCertLedgerAddress,
   userCertLedgerAddress,
-  tokenLedgerAddress
+  tokenLedgerAddress,
+  stoEscrowBoxAddress
 } from "./globals";
 
 export const authCertLedgerContract = new web3.eth.Contract(
@@ -32,6 +33,10 @@ export const personalEscrowBoxContract = new web3.eth.Contract(peb_abi, {
   data: peb_bytecode
 });
 
-export const stoEscrowBoxContract = new web3.eth.Contract(seb_abi, {
-  data: seb_bytecode
-});
+export const stoEscrowBoxContract = new web3.eth.Contract(
+  seb_abi,
+  stoEscrowBoxAddress,
+  {
+    data: seb_bytecode
+  }
+);

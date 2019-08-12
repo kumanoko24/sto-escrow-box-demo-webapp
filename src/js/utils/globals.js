@@ -21,4 +21,10 @@ export const user1pk =
 export const user2pk =
   "0xb5ca412f5436aa50f13ef8bdc93289373b89daf5381e399af7f94d437fbda2dc";
 
-export const stoEscrowBoxAddress = "0x762ebd5b30efaa1fdce765e998ab2c0861101b24";
+export const stoEscrowBoxAddress = "0xfd75b85ba44ef3bd424cd6336f92155ecb85c175";
+
+export const personalEscrowBoxUser1Address =
+  "0x9adb5888d6624e246dbd593f1513f54a8c5d31b2";
+
+export const personalEscrowBoxUser2Address =
+  "0x06c86e57dd2001ad4ac4baae2bcc0cd81eaa8edc";

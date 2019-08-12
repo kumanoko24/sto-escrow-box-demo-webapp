@@ -1,16 +1,20 @@
 import {
   authCertLedgerContract,
   userCertLedgerContract,
-  tokenLedgerContract,
-  personalEscrowBoxContract,
-  stoEscrowBoxContract
+  tokenLedgerContract
+  //   personalEscrowBoxContract,
+  //   stoEscrowBoxContract
 } from "./utils/contractWrapper";
 
-import { stoEscrowBoxAddress } from "./utils/globals";
+import {
+  stoEscrowBoxAddress,
+  personalEscrowBoxUser1Address,
+  personalEscrowBoxUser2Address
+} from "./utils/globals";
 
-import { web3 } from "./utils/web3";
+// import { web3 } from "./utils/web3";
 
-import { auth1, auth2, user1, user2 } from "./utils/account";
+import { auth1, auth2 } from "./utils/account";
 
 import { BigNumber as BN } from "bignumber.js";
 
@@ -19,8 +23,8 @@ export function loadBalanceTable($) {
     seb: { address: stoEscrowBoxAddress },
     auth1: { address: auth1.address },
     auth2: { address: auth2.address },
-    user1: { address: user1.address },
-    user2: { address: user2.address }
+    pebuser1: { address: personalEscrowBoxUser1Address },
+    pebuser2: { address: personalEscrowBoxUser2Address }
   };
 
   Object.keys(accountMap)
