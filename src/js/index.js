@@ -5,14 +5,21 @@ import "../style/style.css";
 
 import $ from "jquery";
 
-$(function() {
-  console.log("hello world");
-});
+import {
+  authCertLedgerContract,
+  userCertLedgerContract
+} from "./utils/contractWrapper";
 
-if (module.hot) {
-  module.hot.accept(function(err) {
-    if (err) {
-      console.error(err);
-    }
-  });
-}
+$(async function() {
+  console.log("hello world");
+  console.log(
+    await authCertLedgerContract.methods
+      .balanceOf("0x970b76e2b457d8f60a4ca7b47be2e8115aabfd26")
+      .call()
+  );
+  console.log(
+    await userCertLedgerContract.methods
+      .balanceOf("0x970b76e2b457d8f60a4ca7b47be2e8115aabfd26")
+      .call()
+  );
+});

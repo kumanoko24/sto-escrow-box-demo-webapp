@@ -11,8 +11,9 @@ module.exports = {
   },
   devtool: "inline-source-map",
   devServer: {
-    contentBase: "./dist",
-    hot: true
+    contentBase: path.join(__dirname, "dist"),
+    hot: true,
+    watchContentBase: true
   },
   output: {
     filename: "[name].[hash].bundle.js",
