@@ -13,7 +13,8 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     hot: true,
-    watchContentBase: true
+    watchContentBase: true,
+    port: 9000
   },
   output: {
     filename: "[name].[hash].bundle.js",
