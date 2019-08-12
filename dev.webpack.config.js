@@ -11,7 +11,7 @@ module.exports = {
   },
   devtool: "inline-source-map",
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, "src"),
     hot: true,
     watchContentBase: true,
     port: 9000
@@ -23,7 +23,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "Web Page",
+      title: "STO Escrow Box",
       template: "./src/index.html"
     })
   ],

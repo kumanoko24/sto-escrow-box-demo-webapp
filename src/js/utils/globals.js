@@ -4,6 +4,8 @@ export const authCertLedgerAddress =
 export const userCertLedgerAddress =
   "0x37705488D26b3519d1f022d9F41341eAf4801C46";
 
+export const tokenLedgerAddress = "0x097fCcfCef9F19C53D585bb339882f2D6F9D4719";
+
 export const infura_provider =
   "https://kovan.infura.io/v3/0c79391c08404e3db45808fc8eb1ee60";
 
@@ -18,3 +20,5 @@ export const user1pk =
 
 export const user2pk =
   "0xb5ca412f5436aa50f13ef8bdc93289373b89daf5381e399af7f94d437fbda2dc";
+
+export const stoEscrowBoxAddress = "0x762ebd5b30efaa1fdce765e998ab2c0861101b24";

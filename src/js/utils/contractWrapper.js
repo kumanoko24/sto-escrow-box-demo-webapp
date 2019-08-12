@@ -4,7 +4,11 @@ import { abi as erc_abi } from "./erc";
 import { abi as peb_abi, bytecode as peb_bytecode } from "./personalEscrowBox";
 import { abi as seb_abi, bytecode as seb_bytecode } from "./stoEscrowBox";
 
-import { authCertLedgerAddress, userCertLedgerAddress } from "./globals";
+import {
+  authCertLedgerAddress,
+  userCertLedgerAddress,
+  tokenLedgerAddress
+} from "./globals";
 
 export const authCertLedgerContract = new web3.eth.Contract(
   erc_abi,
@@ -15,6 +19,12 @@ export const authCertLedgerContract = new web3.eth.Contract(
 export const userCertLedgerContract = new web3.eth.Contract(
   erc_abi,
   userCertLedgerAddress,
+  { gasPrice: "1000000000" }
+);
+
+export const tokenLedgerContract = new web3.eth.Contract(
+  erc_abi,
+  tokenLedgerAddress,
   { gasPrice: "1000000000" }
 );
 

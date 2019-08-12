@@ -16,7 +16,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: "Web Page",
+      title: "STO Escrow Box",
       template: "./src/index.html"
     })
   ],

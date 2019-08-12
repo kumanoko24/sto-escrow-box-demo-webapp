@@ -1,3 +1,4 @@
-.page {
-  color: greenyellow;
+.row .column.column-45 {
+  flex: 0 0 45%;
+  max-width: 45%;
 }
