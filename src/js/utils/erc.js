@@ -3,14 +3,17 @@ export const abi = [
     constant: false,
     inputs: [
       {
+        internalType: "address",
         name: "",
         type: "address"
       },
       {
+        internalType: "uint256",
         name: "",
         type: "uint256"
       },
       {
+        internalType: "bytes",
         name: "",
         type: "bytes"
       }
@@ -18,6 +21,7 @@ export const abi = [
     name: "transferAndCall",
     outputs: [
       {
+        internalType: "bool",
         name: "",
         type: "bool"
       }
@@ -30,6 +34,7 @@ export const abi = [
     constant: true,
     inputs: [
       {
+        internalType: "address",
         name: "",
         type: "address"
       }
@@ -37,6 +42,7 @@ export const abi = [
     name: "balanceOf",
     outputs: [
       {
+        internalType: "uint256",
         name: "",
         type: "uint256"
       }
@@ -49,10 +55,12 @@ export const abi = [
     constant: false,
     inputs: [
       {
+        internalType: "address",
         name: "",
         type: "address"
       },
       {
+        internalType: "uint256",
         name: "",
         type: "uint256"
       }
@@ -60,6 +68,7 @@ export const abi = [
     name: "transfer",
     outputs: [
       {
+        internalType: "bool",
         name: "",
         type: "bool"
       }

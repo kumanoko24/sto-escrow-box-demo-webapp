@@ -1,4 +1,4 @@
-pragma solidity ^0.5.10;
+pragma solidity ^0.5.11;
 pragma experimental ABIEncoderV2;
 
 contract ERC {
@@ -11,13 +11,16 @@ contract FsTKerWallet {
 
   address public owner;
 
+  ERC public userCertLedger;
+
   modifier onlyOwner {
     require(msg.sender == owner);
     _;
   }
 
-  constructor () public {
+  constructor (address _userCertLedgerAddress) public {
     owner = msg.sender;
+    userCertLedger = ERC(_userCertLedgerAddress);
   }
 
   function getETHBalance () public view returns (uint256) {
@@ -42,11 +45,14 @@ contract FsTKerWallet {
 
   function transferERC (ERC erc, address _to, uint256 _value) onlyOwner public returns (bool) {
     require(_to != address(this));
-    return erc.transfer(_to, _value);
+    require(userCertLedger.balanceOf(_to) > 0);
+    require(erc.transfer(_to, _value));
+    return true;
   }
 
   function transferAndCallERC (ERC erc, address _to, uint256 _value, bytes memory _data) onlyOwner payable public returns (bool) {
     require(_to != address(this));
+    require(userCertLedger.balanceOf(_to) > 0);
     require(erc.transferAndCall.value(msg.value)(_to, _value, _data));
     return true;
   }
