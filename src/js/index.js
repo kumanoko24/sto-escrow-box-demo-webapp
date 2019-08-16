@@ -18,7 +18,7 @@ $(async function() {
 
   loadBalanceTable($);
 
-  registerUserSubmit($, loadBalanceTable);
+  registerUserSubmit($, loadBalanceTable, loadSTOEscrowBox);
 
   loadSTOEscrowBox($);
 });

@@ -88,6 +88,37 @@
         </div>
       </div>
       <div class="row">
+        <div class="column">
+          <h3>STO Escrow Box Status</h3>
+          <a style="cursor: pointer" id="seb-table-body-newly-proposed"
+            >Newly Proposed |
+          </a>
+          <a style="cursor: pointer" id="seb-table-body-finalised"
+            >Finalised |
+          </a>
+          <a style="cursor: pointer" id="seb-table-body-cancelled">Cancelled</a>
+          <table style="font-family: monospace">
+            <thead>
+              <tr>
+                <th>
+                  Requset ID
+                </th>
+                <th>
+                  Request from
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Receiver
+                </th>
+              </tr>
+            </thead>
+            <tbody id="seb-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
         <div class="column column-45">
           <h3>Operators</h3>
           <form>
@@ -169,35 +200,6 @@
               </button>
             </fieldset>
           </form>
-        </div>
-        <div class="column">
-          <h3>STO Escrow Box Status</h3>
-          <a style="cursor: pointer" id="seb-table-body-newly-proposed"
-            >Newly Proposed |
-          </a>
-          <a style="cursor: pointer" id="seb-table-body-finalised"
-            >Finalised |
-          </a>
-          <a style="cursor: pointer" id="seb-table-body-cancelled">Cancelled</a>
-          <table style="font-family: monospace">
-            <thead>
-              <tr>
-                <th>
-                  Requset ID
-                </th>
-                <th>
-                  Request from
-                </th>
-                <th>
-                  Value
-                </th>
-                <th>
-                  Receiver
-                </th>
-              </tr>
-            </thead>
-            <tbody id="seb-table-body"></tbody>
-          </table>
         </div>
       </div>
     </div>

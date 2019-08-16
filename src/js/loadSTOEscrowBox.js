@@ -17,15 +17,21 @@ async function loadNewlyProposed($, newlyProposed) {
 
   console.log(result);
 
+  result.reverse();
   $("#seb-table-body").html(
     result
       .map((p, i) => {
         return `
-    <tr>
+    <tr class="newly-proposed">
       <td>${newlyProposed[i].returnValues._id}</td>
-      <td>${p._from}</td>
+      <td><a target="_blank" style="text-decoration: underline;" href="https://kovan.etherscan.io/address/${
+        p._from
+      }">${p._from.toLowerCase()}</a></td>
       <td>${new BN(p._value).shiftedBy(-18).toFormat(1)}</td>
-      <td>0x${p._calldata.slice(34, 34 + 40)}</td>
+      <td><a target="_blank" style="text-decoration: underline;" href="https://kovan.etherscan.io/address/0x${p._calldata.slice(
+        34,
+        34 + 40
+      )}">0x${p._calldata.slice(34, 34 + 40)}</a></td>
     </tr>`;
       })
       .join("")

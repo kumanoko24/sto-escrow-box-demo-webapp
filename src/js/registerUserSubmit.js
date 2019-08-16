@@ -17,7 +17,7 @@ import { BigNumber as BN } from "bignumber.js";
 
 import secureRandom from "secure-random";
 
-async function submit(userNum, value, $, loadBalanceTable) {
+async function submit(userNum, value, $, loadBalanceTable, loadSTOEscrowBox) {
   if (!value) {
     return;
   }
@@ -106,6 +106,10 @@ async function submit(userNum, value, $, loadBalanceTable) {
 
   loadBalanceTable($);
 
+  setTimeout(() => {
+    loadSTOEscrowBox($);
+  }, 2000);
+
   $("button").prop("disabled", false);
   $("input").prop("readonly", false);
 
@@ -113,13 +117,13 @@ async function submit(userNum, value, $, loadBalanceTable) {
   $("#user2-s-button").html("User 2 Submits");
 }
 
-export function registerUserSubmit($, loadBalanceTable) {
+export function registerUserSubmit($, loadBalanceTable, loadSTOEscrowBox) {
   $("#user1-s-button").on("click", function(e) {
     e.preventDefault();
     $("button").prop("disabled", true);
     $("input").prop("readonly", true);
     $(this).html("Submitted");
-    submit(1, $("#user1-s").val(), $, loadBalanceTable);
+    submit(1, $("#user1-s").val(), $, loadBalanceTable, loadSTOEscrowBox);
   });
 
   $("#user2-s-button").on("click", function(e) {
@@ -127,6 +131,6 @@ export function registerUserSubmit($, loadBalanceTable) {
     $("button").prop("disabled", true);
     $("input").prop("readonly", true);
     $(this).html("Submitted");
-    submit(2, $("#user2-s").val(), $, loadBalanceTable);
+    submit(2, $("#user2-s").val(), $, loadBalanceTable, loadSTOEscrowBox);
   });
 }
