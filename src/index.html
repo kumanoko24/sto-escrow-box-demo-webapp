@@ -101,7 +101,9 @@
                 placeholder="Please input transfer value"
                 style="margin-bottom: 1rem; font-family: monospace"
               />
-              <button id="user1-s-button" style="margin-bottom: 1.5rem">User 1 Submits</button>
+              <button id="user1-s-button" style="margin-bottom: 1.5rem">
+                User 1 Submits
+              </button>
               <hr style="margin: 1rem 0;" />
               <label for="user2-s"
                 >User 2 submits Security Token transfer request</label
@@ -112,7 +114,9 @@
                 placeholder="Please input transfer value"
                 style="margin-bottom: 1rem; font-family: monospace"
               />
-              <button id="user2-s-button" style="margin-bottom: 1.5rem">User 2 Submits</button>
+              <button id="user2-s-button" style="margin-bottom: 1.5rem">
+                User 2 Submits
+              </button>
               <hr style="margin: 1rem 0;" />
               <label for="auth1-s"
                 >Authority 1 accpets/rejects the request</label
@@ -135,7 +139,9 @@
                   0x85b23ccd01440e2c3f9afcff8685b1ac12f56f2840224d0d07867727a5c57d51
                 </option>
               </select>
-              <button id="auth1-s-button" style="margin-bottom: 1.5rem">Authority 1 Submits</button>
+              <button id="auth1-s-button" style="margin-bottom: 1.5rem">
+                Authority 1 Submits
+              </button>
               <hr style="margin: 1rem 0;" />
               <label for="auth2-s"
                 >Authority 2 accpets/rejects the request</label
@@ -158,12 +164,43 @@
                   0x85b23ccd01440e2c3f9afcff8685b1ac12f56f2840224d0d07867727a5c57d51
                 </option>
               </select>
-              <button id="auth2-s-button" style="margin-bottom: 1.5rem">Authority 2 Submits</button>
+              <button id="auth2-s-button" style="margin-bottom: 1.5rem">
+                Authority 2 Submits
+              </button>
             </fieldset>
           </form>
         </div>
         <div class="column">
           <h3>STO Escrow Box Status</h3>
+          <a style="cursor: pointer" id="seb-table-body-newly-proposed"
+            >Newly Proposed |
+          </a>
+          <a style="cursor: pointer" id="seb-table-body-finalised"
+            >Finalised |
+          </a>
+          <a style="cursor: pointer" id="seb-table-body-cancelled">Cancelled</a>
+          <table style="font-family: monospace">
+            <thead>
+              <tr>
+                <th>
+                  Requset ID
+                </th>
+                <th>
+                  Request from
+                </th>
+                <th>
+                  Value
+                </th>
+                <th>
+                  Receiver
+                </th>
+                <th>
+                  Call_Data
+                </th>
+              </tr>
+            </thead>
+            <tbody id="seb-table-body"></tbody>
+          </table>
         </div>
       </div>
     </div>

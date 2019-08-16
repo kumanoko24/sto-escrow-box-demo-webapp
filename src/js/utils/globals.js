@@ -7,7 +7,7 @@ export const userCertLedgerAddress =
 export const tokenLedgerAddress = "0x097fCcfCef9F19C53D585bb339882f2D6F9D4719";
 
 export const infura_provider =
-  "https://kovan.infura.io/v3/0c79391c08404e3db45808fc8eb1ee60";
+  "https://kovan.infura.io/v3/3ebd8af0f7a54f7998b9f08825a84329";
 
 export const auth1pk =
   "0xacd911a3c40e25931ad0a15f2338ce253c3762d3c0cc02dd0fc1e9ec98dd06e3";
