@@ -26,7 +26,6 @@ async function loadNewlyProposed($, newlyProposed) {
       <td>${p._from}</td>
       <td>${new BN(p._value).shiftedBy(-18).toFormat(1)}</td>
       <td>0x${p._calldata.slice(34, 34 + 40)}</td>
-      <td>${p._calldata}</td>
     </tr>`;
       })
       .join("")
