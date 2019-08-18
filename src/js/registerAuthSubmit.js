@@ -112,6 +112,8 @@ async function submit(
 
   $("#auth1-s-button").html("Authority 1 Submits");
   $("#auth2-s-button").html("Authority 2 Submits");
+
+  window.localStorage.setItem(`${authNum}-${id}`, "true");
 }
 
 export function registerAuthSubmit($, loadBalanceTable, loadSTOEscrowBox) {

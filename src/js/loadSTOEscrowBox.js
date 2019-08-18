@@ -11,7 +11,7 @@ import { BigNumber as BN } from "bignumber.js";
 async function loadProposedToTable($, proposed, className) {
   if (proposed.length === 0) {
     $("#seb-table-body").append(
-      `<tr class="${className} noel-hide"><td>(empty)</td></tr>`
+      `<tr class="${className} noel-hide"><td>(empty)</td><td></td><td></td><td></td><td></td></tr>`
     );
     return;
   }
@@ -28,7 +28,8 @@ async function loadProposedToTable($, proposed, className) {
       .map((p, i) => {
         return `
     <tr class="${className} noel-hide">
-      <td>${proposed[i].returnValues._id.slice(0, 34)}</td>
+      <td>${proposed[i].returnValues._id.slice(0, 22)}</td>
+      <td>${p._voteNum}</td>
       <td><a target="_blank" style="text-decoration: underline;" href="https://kovan.etherscan.io/address/${
         p._from
       }">${p._from.toLowerCase()}</a></td>
@@ -61,20 +62,44 @@ async function loadCancelled($, cancelled) {
 }
 
 function loadOptionsToAuths($, proposed) {
-  $(".auth-s-noel").html(
-    proposed
+  [1, 2].forEach(num => {
+    if (proposed.length === 0) {
+      $(`#auth${num}-s`).html("<option>(No newly proposed request)</option>");
+      $(`#auth${num}-s-button`).prop("disabled", true);
+      return;
+    }
+
+    const tmp = proposed
+      .filter(p => {
+        if (
+          window.localStorage.getItem(`${num}-${p.returnValues._id}`) === "true"
+        ) {
+          return false;
+        }
+        return true;
+      })
       .map(p => {
         return `
-          <option value="accept-${
-            p.returnValues._id
-          }">Accept ${p.returnValues._id.slice(0, 34)}</option>
-          <option value="reject-${
-            p.returnValues._id
-          }">Reject ${p.returnValues._id.slice(0, 34)}</option>
-        `;
+        <option value="accept-${
+          p.returnValues._id
+        }">Accept ${p.returnValues._id.slice(0, 22)}</option>
+        <option value="reject-${
+          p.returnValues._id
+        }">Reject ${p.returnValues._id.slice(0, 22)}</option>
+      `;
       })
-      .join("")
-  );
+      .join("");
+
+    if (tmp === "") {
+      $(`#auth${num}-s`).html("<option>(No newly proposed request)</option>");
+      $(`#auth${num}-s-button`).prop("disabled", true);
+      return;
+    }
+
+    $(`#auth${num}-s`).html(tmp);
+
+    $(`#auth${num}-s-button`).prop("disabled", false);
+  });
 }
 
 export async function loadSTOEscrowBox($) {
