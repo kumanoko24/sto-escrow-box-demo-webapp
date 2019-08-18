@@ -130,15 +130,15 @@ export async function loadSTOEscrowBox($) {
   const [ProposeCreated, ProposeExecuted, ProposeCancelled] = await Promise.all(
     [
       stoEscrowBoxContract.getPastEvents("ProposeCreated", {
-        fromBlock: 12791545,
+        fromBlock: 12911114,
         toBlock: "latest"
       }),
       stoEscrowBoxContract.getPastEvents("ProposeExecuted", {
-        fromBlock: 12791545,
+        fromBlock: 12911114,
         toBlock: "latest"
       }),
       stoEscrowBoxContract.getPastEvents("ProposeCancelled", {
-        fromBlock: 12791545,
+        fromBlock: 12911114,
         toBlock: "latest"
       })
     ]
