@@ -8,22 +8,27 @@ import {
 
 import { BigNumber as BN } from "bignumber.js";
 
-async function loadNewlyProposed($, newlyProposed) {
+async function loadProposedToTable($, proposed, className) {
+  if (proposed.length === 0) {
+    $("#seb-table-body").append(
+      `<tr class="${className} noel-hide"><td>(empty)</td></tr>`
+    );
+    return;
+  }
+
   const result = await Promise.all(
-    newlyProposed.map(p =>
+    proposed.map(p =>
       stoEscrowBoxContract.methods.voteMap(p.returnValues._id).call()
     )
   );
 
-  console.log(result);
-
   result.reverse();
-  $("#seb-table-body").html(
+  $("#seb-table-body").append(
     result
       .map((p, i) => {
         return `
-    <tr class="newly-proposed">
-      <td>${newlyProposed[i].returnValues._id}</td>
+    <tr class="${className} noel-hide">
+      <td>${proposed[i].returnValues._id.slice(0, 34)}</td>
       <td><a target="_blank" style="text-decoration: underline;" href="https://kovan.etherscan.io/address/${
         p._from
       }">${p._from.toLowerCase()}</a></td>
@@ -37,14 +42,43 @@ async function loadNewlyProposed($, newlyProposed) {
       .join("")
   );
 
+  console.log(className, proposed);
+
   return result;
 }
 
-async function loadFinalised($, finalised) {}
+async function loadNewlyProposed($, newlyProposed) {
+  await loadProposedToTable($, newlyProposed, "newly-proposed");
+  loadOptionsToAuths($, newlyProposed);
+}
 
-async function loadCancelled($, cancelled) {}
+async function loadFinalised($, finalised) {
+  await loadProposedToTable($, finalised, "finalised");
+}
+
+async function loadCancelled($, cancelled) {
+  await loadProposedToTable($, cancelled, "cancelled");
+}
+
+function loadOptionsToAuths($, proposed) {
+  $(".auth-s-noel").html(
+    proposed
+      .map(p => {
+        return `
+          <option value="accept-${
+            p.returnValues._id
+          }">Accept ${p.returnValues._id.slice(0, 34)}</option>
+          <option value="reject-${
+            p.returnValues._id
+          }">Reject ${p.returnValues._id.slice(0, 34)}</option>
+        `;
+      })
+      .join("")
+  );
+}
 
 export async function loadSTOEscrowBox($) {
+  $("#seb-table-body-newly-proposed").off();
   $("#seb-table-body-newly-proposed").on("click", function(e) {
     e.preventDefault();
     $(".newly-proposed").removeClass("noel-hide");
@@ -52,6 +86,7 @@ export async function loadSTOEscrowBox($) {
     $(".cancelled").addClass("noel-hide");
   });
 
+  $("#seb-table-body-finalised").off();
   $("#seb-table-body-finalised").on("click", function(e) {
     e.preventDefault();
     $(".newly-proposed").addClass("noel-hide");
@@ -59,6 +94,7 @@ export async function loadSTOEscrowBox($) {
     $(".cancelled").addClass("noel-hide");
   });
 
+  $("#seb-table-body-cancelled").off();
   $("#seb-table-body-cancelled").on("click", function(e) {
     e.preventDefault();
     $(".newly-proposed").addClass("noel-hide");
@@ -83,28 +119,30 @@ export async function loadSTOEscrowBox($) {
     ]
   );
 
-  console.log("ProposeCreated", ProposeCreated);
-  console.log("ProposeExecuted", ProposeExecuted);
-  console.log("ProposeCancelled", ProposeCancelled);
-
   const newlyProposed = ProposeCreated.filter(p => {
     if (
       ProposeExecuted.filter(pp => p.returnValues._id === pp.returnValues._id)
         .length !== 0
     ) {
-      if (
-        ProposeCancelled.filter(
-          pp => p.returnValues._id === pp.returnValues._id
-        ).length !== 0
-      ) {
-        return false;
-      }
+      return false;
+    }
+
+    if (
+      ProposeCancelled.filter(pp => p.returnValues._id === pp.returnValues._id)
+        .length !== 0
+    ) {
+      return false;
     }
 
     return true;
   });
 
-  console.log("newlyProposed", newlyProposed);
-
+  $("#seb-table-body").html("");
   loadNewlyProposed($, newlyProposed);
+  loadFinalised($, ProposeExecuted);
+  loadCancelled($, ProposeCancelled);
+
+  setTimeout(() => {
+    $(".newly-proposed").removeClass("noel-hide");
+  }, 1000);
 }

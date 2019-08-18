@@ -9,16 +9,20 @@ import $ from "jquery";
 
 import { loadBalanceTable } from "./loadBalanceTable";
 
+import { loadSTOEscrowBox } from "./loadSTOEscrowBox";
+
 import { registerUserSubmit } from "./registerUserSubmit";
 
-import { loadSTOEscrowBox } from "./loadSTOEscrowBox";
+import { registerAuthSubmit } from "./registerAuthSubmit";
 
 $(async function() {
   $(".container").show(0);
 
   loadBalanceTable($);
 
+  loadSTOEscrowBox($);
+
   registerUserSubmit($, loadBalanceTable, loadSTOEscrowBox);
 
-  loadSTOEscrowBox($);
+  registerAuthSubmit($, loadBalanceTable, loadSTOEscrowBox);
 });

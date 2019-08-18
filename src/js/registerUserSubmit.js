@@ -19,6 +19,11 @@ import secureRandom from "secure-random";
 
 async function submit(userNum, value, $, loadBalanceTable, loadSTOEscrowBox) {
   if (!value) {
+    $("button").prop("disabled", false);
+    $("input").prop("readonly", false);
+  
+    $("#user1-s-button").html("User 1 Submits");
+    $("#user2-s-button").html("User 2 Submits");
     return;
   }
 
@@ -108,7 +113,7 @@ async function submit(userNum, value, $, loadBalanceTable, loadSTOEscrowBox) {
 
   setTimeout(() => {
     loadSTOEscrowBox($);
-  }, 2000);
+  }, 1000);
 
   $("button").prop("disabled", false);
   $("input").prop("readonly", false);
